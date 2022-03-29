@@ -16,18 +16,30 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/characterforname">Searcher</router-link>
+            </li>
             <!-- <li class="nav-item">
           <router-link class="nav-link" to="/personaje">Personaje</router-link>
         </li> -->
           </ul>
         </div>
+        
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      characters: {},
+      
+    };
+  },
+
+}
 </script>
 
 <style lang="scss" scoped>

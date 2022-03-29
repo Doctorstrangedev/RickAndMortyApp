@@ -14,6 +14,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "personaje" */ '../views/PersonajeView.vue')
   },
   {
+    path:'/characterforname',
+    name:'characterforname',
+    component: () => import(/* webpackChunkName: "characterforname" */ '../views/CharacterForName.vue')
+  },
+  {
     path:'/:catchAll(.*)',
     name:'Error404',
     component: () => import(/* webpackChunkName: "error404" */ '../views/Error404.vue')

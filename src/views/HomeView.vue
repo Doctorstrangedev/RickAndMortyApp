@@ -1,9 +1,21 @@
 <template>
   <div class="container">
     <div class="botones">
-  <button v-if="counter > 1" class="btn btn-primary anterior" v-on:click="paginaAnterior"><i class="fa-solid fa-arrow-left"></i></button>
-    <button v-if="counter < 42" class="btn btn-primary siguiente" v-on:click="paginaSiguiente"><i class="fa-solid fa-arrow-right"></i></button>
-</div>
+      <button
+        v-if="counter > 1"
+        class="btn btn-primary anterior"
+        v-on:click="paginaAnterior"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button
+        v-if="counter < 42"
+        class="btn btn-primary siguiente"
+        v-on:click="paginaSiguiente"
+      >
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
     <div class="row">
       <div
         class="col-lg-3 d-flex justify-content-center"
@@ -36,11 +48,22 @@
         </div>
       </div>
     </div>
-<div class="botones">
-  <button v-if="counter > 1" class="btn btn-primary anterior" v-on:click="paginaAnterior"><i class="fa-solid fa-arrow-left"></i></button>
-    <button v-if="counter < 42" class="btn btn-primary siguiente" v-on:click="paginaSiguiente"><i class="fa-solid fa-arrow-right"></i></button>
-</div>
-    
+    <div class="botones">
+      <button
+        v-if="counter > 1"
+        class="btn btn-primary anterior"
+        v-on:click="paginaAnterior"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button
+        v-if="counter < 42"
+        class="btn btn-primary siguiente"
+        v-on:click="paginaSiguiente"
+      >
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -50,14 +73,14 @@ export default {
     return {
       characters: {},
       counter: 1,
+      character: "",
     };
   },
   methods: {
+   
     async mostrarCharacters() {
       try {
-        const data = await fetch(
-          `https://rickandmortyapi.com/api/character?page=1`
-        );
+        const data = await fetch(`https://rickandmortyapi.com/api/character`);
         const getCharacters = await data.json();
         this.characters = getCharacters.results;
       } catch (error) {
@@ -71,23 +94,21 @@ export default {
         if (this.counter <= 41) {
           this.counter++;
           const url = `https://rickandmortyapi.com/api/character?page=${this.counter}`;
-      console.log(this.counter);
-      console.log(url);
+          console.log(this.counter);
+          console.log(url);
 
-      try {
-        const data = await fetch(url);
-        const getCharacters = await data.json();
-        this.characters = getCharacters.results;
-        console.log(this.characters);
-      } catch (error) {
-        throw error;
-      }
-        }else{
+          try {
+            const data = await fetch(url);
+            const getCharacters = await data.json();
+            this.characters = getCharacters.results;
+            console.log(this.characters);
+          } catch (error) {
+            throw error;
+          }
+        } else {
           this.counter = 42;
         }
-        
       }
-      
     },
 
     async paginaAnterior(event) {
@@ -201,28 +222,31 @@ body {
   color: #abad12;
 }
 
-a, button {
+a,
+button {
   color: #fff !important;
   text-decoration: none !important;
 }
-.container .row .card .card-body .btn.btn-primary, button {
+.container .row .card .card-body .btn.btn-primary,
+button {
   background: linear-gradient(145deg, #0685ac, #36aa7c 50%, #0685ac);
   border: none;
   font-size: 600;
 }
 
-.container .row .card .card-body .btn.btn-primary:hover, button:hover {
+.container .row .card .card-body .btn.btn-primary:hover,
+button:hover {
   background: linear-gradient(110deg, #0685ac, #05ff9b 50%, #0685ac);
 }
 
-.botones{
+.botones {
   display: flex;
   justify-content: space-between;
-  margin-bottom:30px; 
+  margin-bottom: 30px;
 }
-.anterior, .siguiente{
-width: 100px;
-border-radius: 50px !important;
+.anterior,
+.siguiente {
+  width: 100px;
+  border-radius: 50px !important;
 }
-
 </style>
